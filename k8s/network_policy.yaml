@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-bran-to-hodor
+  namespace: your-namespace
+spec:
+  podSelector:
+    matchLabels:
+      app: bran
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: hodor
