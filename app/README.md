@@ -9,5 +9,5 @@ go run main.go # run app
 ```
 
 - App uses OS environment for config
-- http://127.0.0.1:8000/metrics - returns app metrics
-- http://127.0.0.1:8000/* - returns hodor...hodor..hodor.. 
+- http://127.0.0.1:8081/metrics - returns app metrics
+- http://127.0.0.1:8081/* - returns hodor...hodor..hodor.. 
