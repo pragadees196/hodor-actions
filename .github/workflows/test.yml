@@ -25,5 +25,8 @@ jobs:
               with:
                 target: app:latest
                 tag: "slim"
+            - name: Tagging the image
+              run: |
+                docker tag app:slim $FULL_TAG
             - name: printing image
               run: docker images
