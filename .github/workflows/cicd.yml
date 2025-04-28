@@ -62,25 +62,25 @@ jobs:
           tags: app:latest
       - name:
         run: docker images
-      # - name: compressing the image
-      #   uses: kitabisa/docker-slim-action@v1
-      #   env:
-      #     DSLIM_HTTP_PROBE: false
-      #   with:
-      #     target: app:latest
-      #     tag: "slim"
-      # - name: Tagging the image
-      #   run: |
-      #     docker tag app:slim $FULL_TAG
-      #     docker rmi app:latest
-      # - name: printing image
-      #   run: docker images
-      # - name: Run Trivy vulnerability scanner
-      #   uses: aquasecurity/trivy-action@0.28.0
-      #   with:
-      #     image-ref: $FULL_TAG
-      #     format: 'table'
-      #     exit-code: '1'
-      #     ignore-unfixed: true
-      #     vuln-type: 'os,library'
-      #     severity: 'CRITICAL,HIGH'
+      - name: compressing the image
+        uses: kitabisa/docker-slim-action@v1
+        env:
+          DSLIM_HTTP_PROBE: false
+        with:
+          target: app:latest
+          tag: "slim"
+      - name: Tagging the image
+        run: |
+          docker tag app:slim $FULL_TAG
+          docker rmi app:latest
+      - name: printing image
+        run: docker images
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: $FULL_TAG
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
