@@ -82,3 +82,6 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+      - name: Push Docker image to Docker Hub
+        run: |
+          docker push $FULL_TAG
