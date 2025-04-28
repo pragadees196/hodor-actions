@@ -40,6 +40,8 @@ jobs:
   Docker:
     runs-on: ubuntu-latest
     needs: Git-leaks
+    env: 
+      DOCKERHUB_USERNAME: pragadees196
     steps:
       - name: fetch code
         uses: actions/checkout@v3
@@ -50,3 +52,26 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set IMAGE_NAME and FULL_TAG dynamically
+        run: |
+          echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
+          echo "FULL_TAG=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+      - name: Build Docker Image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./app
+          push: false
+          tags: app:latest
+      - name: compressing the image
+        uses: kitabisa/docker-slim-action@v1
+        env:
+          DSLIM_HTTP_PROBE: false
+        with:
+          target: app:latest
+          tag: "slim"
+      - name: Tagging the image
+        run: |
+          docker tag app:slim $FULL_TAG
+          docker rmi app:latest
+      - name: printing image
+        run: docker images

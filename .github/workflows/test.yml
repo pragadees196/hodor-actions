@@ -5,10 +5,13 @@ jobs:
         runs-on: ubuntu-latest
         env:
             DOCKERHUB_USERNAME: pragadees196
+        outputs:
+            image_tag: ${{steps.imagetag.outputs.FULL_TAG}}
         steps: 
             - name: fetch code
               uses: actions/checkout@v3
             - name: Set IMAGE_NAME and FULL_TAG dynamically
+              id: imagetag
               run: |
                 echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
                 echo "FULL_TAG=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
@@ -28,5 +31,6 @@ jobs:
             - name: Tagging the image
               run: |
                 docker tag app:slim $FULL_TAG
+                docker rmi app:latest
             - name: printing image
               run: docker images
