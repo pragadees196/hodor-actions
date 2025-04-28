@@ -11,3 +11,5 @@ jobs:
               with:
                 username: ${{ secrets.DOCKERHUB_USERNAME }}
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
+            - name: getting data about job
+              run: echo "${{toJson(github)}}"
