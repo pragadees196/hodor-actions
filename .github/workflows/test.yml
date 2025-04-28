@@ -20,6 +20,6 @@ jobs:
                 DSLIM_HTTP_PROBE: false
               with:
                 target: app:latest
-                tag: "${{env.repo}}:${{github.sha}}"
+                tag: ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:${{ github.sha }}
             - name: printing image
               run: docker ps
