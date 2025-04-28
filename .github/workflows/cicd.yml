@@ -2,14 +2,14 @@ name: testing
 on:
   push:
     branches:
-      - main
+      - master
     paths-ignore:
       - k8s/deployment.yaml
   pull_request:
     types:
       - closed
     branches:
-      - main
+      - master
   workflow_dispatch:
 jobs:
   tetsing:
