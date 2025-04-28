@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths-ignore:
-      - k8s/deployment.yaml
+      - k8s/*.yaml
   workflow_dispatch:
 jobs:
   Fetaching-the-code:
