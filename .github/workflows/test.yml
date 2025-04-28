@@ -3,6 +3,23 @@ on: workflow_dispatch
 jobs:
     testing:
         runs-on: ubuntu-latest
+        env:
+            repo: "pragadeesh196"
         steps: 
-            - name: getting data about job
-              run: echo "${{github.repository}}:${{github.sha}}"
+            - name: fetch code
+              uses: actions/checkout@v3
+            - name: Build Docker Image
+              uses: docker/build-push-action@v4
+              with:
+                context: ./app
+                push: false
+                tags: app:latest
+            - name: compressing the image
+              uses: kitabisa/docker-slim-action@v1
+              env:
+                DSLIM_HTTP_PROBE: false
+              with:
+                target: app:latest
+                tag: "${{env.repo}}:${{github.sha}}"
+            - name: printing image
+              run: docker ps

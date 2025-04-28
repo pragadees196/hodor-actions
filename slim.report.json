@@ -1,0 +1,365 @@
+{
+  "document": "doc.report.command",
+  "version": "ov/command/slim/1.1",
+  "engine": "darwin/arm64|Aurora|1.41.7|latest|latest",
+  "containerized": false,
+  "host_distro": {
+    "name": "",
+    "version": "",
+    "display_name": "other"
+  },
+  "type": "slim",
+  "state": "done",
+  "target_reference": "app:latest",
+  "system": {
+    "type": "Linux",
+    "release": "6.10.14-linuxkit",
+    "distro": {
+      "name": "Alpine Linux",
+      "version": "3.21.3",
+      "display_name": "Alpine Linux v3.21"
+    }
+  },
+  "source_image": {
+    "identity": {
+      "id": "sha256:d92f137d0ef7de976ed0e36fc1bd6154dcde944b80b90a5ebbab22bc31320fa4",
+      "tags": [
+        "latest"
+      ],
+      "names": [
+        "app:latest"
+      ]
+    },
+    "size": 432217555,
+    "size_human": "432 MB",
+    "create_time": "2025-04-28T18:26:27Z",
+    "runtime_name": "docker",
+    "architecture": "arm64",
+    "exposed_ports": [
+      "8081/tcp"
+    ],
+    "os": "linux",
+    "env_vars": [
+      "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "GOLANG_VERSION=1.24.2",
+      "GOTOOLCHAIN=local",
+      "GOPATH=/go"
+    ],
+    "container_entry": {
+      "exe_path": ""
+    }
+  },
+  "minified_image_size": 14852255,
+  "minified_image_size_human": "15 MB",
+  "minified_image": "app.slim",
+  "minified_image_id": "sha256:d21ef740b5966ad135fca24534345e8b48a62526fe841e374ebc05412a41607d",
+  "minified_image_digest": "sha256:351e6b209c6e019f73f143e170441c5b78842847ce0faba7cb5fdb0317357cec",
+  "minified_image_has_data": true,
+  "minified_by": 29.10114019722931,
+  "artifact_location": "/opt/homebrew/bin/.mint-state/images/d92f137d0ef7de976ed0e36fc1bd6154dcde944b80b90a5ebbab22bc31320fa4/artifacts",
+  "container_report_name": "creport.json",
+  "seccomp_profile_name": "app-seccomp.json",
+  "apparmor_profile_name": "app-apparmor-profile",
+  "image_stack": [
+    {
+      "is_top_image": true,
+      "id": "sha256:d92f137d0ef7de976ed0e36fc1bd6154dcde944b80b90a5ebbab22bc31320fa4",
+      "full_name": "app:latest",
+      "repo_name": "app",
+      "version_tag": "latest",
+      "raw_tags": [
+        "app:latest"
+      ],
+      "create_time": "2025-04-28T18:26:27Z",
+      "new_size": 432217555,
+      "new_size_human": "432 MB",
+      "instructions": [
+        {
+          "type": "ADD",
+          "time": "2025-02-14T03:28:36Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 8174522,
+          "size_human": "8.2 MB",
+          "params": "alpine-minirootfs-3.21.3-aarch64.tar.gz /",
+          "command_snippet": "ADD alpine-minirootfs-3.21.3-aarch64.tar.gz ...",
+          "command_all": "ADD alpine-minirootfs-3.21.3-aarch64.tar.gz /",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-02-14T08:45:00+05:30",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 2
+        },
+        {
+          "type": "CMD",
+          "time": "2025-02-14T03:28:36Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"/bin/sh\"]\n",
+          "command_snippet": "CMD [\"/bin/sh\"]\n",
+          "command_all": "CMD [\"/bin/sh\"]\n",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-02-14T08:45:00+05:30",
+          "inst_set_time_index": 0,
+          "inst_set_time_reverse_index": 2
+        },
+        {
+          "type": "RUN",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 640225,
+          "size_human": "640 kB",
+          "command_snippet": "RUN apk add --no-cache ca-certificates",
+          "command_all": "RUN apk add --no-cache ca-certificates",
+          "system_commands": [
+            "apk add --no-cache ca-certificates"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "GOLANG_VERSION=1.24.2",
+          "command_snippet": "ENV GOLANG_VERSION=1.24.2",
+          "command_all": "ENV GOLANG_VERSION=1.24.2",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "GOTOOLCHAIN=local",
+          "command_snippet": "ENV GOTOOLCHAIN=local",
+          "command_all": "ENV GOTOOLCHAIN=local",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "GOPATH=/go",
+          "command_snippet": "ENV GOPATH=/go",
+          "command_all": "ENV GOPATH=/go",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "ENV",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "command_snippet": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/loca...",
+          "command_all": "ENV PATH=/go/bin:/usr/local/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "COPY",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 249056856,
+          "size_human": "249 MB",
+          "params": "/target/ /",
+          "command_snippet": "COPY /target/ /",
+          "command_all": "COPY /target/ /",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "RUN",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && ...",
+          "command_all": "RUN mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\" && \\\n\tchmod -R 1777 \"$GOPATH\"",
+          "system_commands": [
+            "mkdir -p \"$GOPATH/src\" \"$GOPATH/bin\"",
+            "chmod -R 1777 \"$GOPATH\""
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "WORKDIR",
+          "time": "2025-04-01T16:30:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "/go",
+          "command_snippet": "WORKDIR /go",
+          "command_all": "WORKDIR /go",
+          "system_commands": [
+            "mkdir -p /go"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-01T22:00:00+05:30",
+          "inst_set_time_index": 1,
+          "inst_set_time_reverse_index": 1
+        },
+        {
+          "type": "WORKDIR",
+          "time": "2025-04-28T18:25:57Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "/app",
+          "command_snippet": "WORKDIR /app",
+          "command_all": "WORKDIR /app",
+          "system_commands": [
+            "mkdir -p /app"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "COPY",
+          "time": "2025-04-28T18:25:58Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 6604,
+          "size_human": "6.6 kB",
+          "params": ". .",
+          "command_snippet": "COPY . .",
+          "command_all": "COPY . .",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2025-04-28T18:26:18Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 12746624,
+          "size_human": "13 MB",
+          "command_snippet": "RUN apk add --no-cache git",
+          "command_all": "RUN apk add --no-cache git",
+          "system_commands": [
+            "apk add --no-cache git"
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "RUN",
+          "time": "2025-04-28T18:26:27Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 161592724,
+          "size_human": "162 MB",
+          "command_snippet": "RUN go build -o main .",
+          "command_all": "RUN go build -o main .",
+          "system_commands": [
+            "go build -o main ."
+          ],
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "EXPOSE",
+          "time": "2025-04-28T18:26:27Z",
+          "is_nop": false,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 0,
+          "params": "8081/tcp",
+          "command_snippet": "EXPOSE 8081/tcp",
+          "command_all": "EXPOSE 8081/tcp",
+          "comment": "buildkit.dockerfile.v0",
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        },
+        {
+          "type": "CMD",
+          "time": "2025-04-28T18:26:27Z",
+          "is_last_instruction": true,
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "params": "[\"./main\"]\n",
+          "command_snippet": "CMD [\"./main\"]\n",
+          "command_all": "CMD [\"./main\"]\n",
+          "comment": "buildkit.dockerfile.v0",
+          "raw_tags": [
+            "app:latest"
+          ],
+          "is_buildkit_instruction": true,
+          "inst_set_time_bucket": "2025-04-28T23:45:00+05:30",
+          "inst_set_time_index": 2,
+          "inst_set_time_reverse_index": 0
+        }
+      ]
+    }
+  ],
+  "image_created": true,
+  "image_build_engine": "internal"
+}
