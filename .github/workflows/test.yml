@@ -24,6 +24,6 @@ jobs:
                 DSLIM_HTTP_PROBE: false
               with:
                 target: app:latest
-                tag: ${{ env.FULL_TAG }}
+                tag: "slim"
             - name: printing image
               run: docker ps
