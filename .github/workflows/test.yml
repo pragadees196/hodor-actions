@@ -4,10 +4,14 @@ jobs:
     testing:
         runs-on: ubuntu-latest
         env:
-            repo: "pragadeesh196"
+            DOCKERHUB_USERNAME: pragadees196
         steps: 
             - name: fetch code
               uses: actions/checkout@v3
+            - name: Set IMAGE_NAME and FULL_TAG dynamically
+              run: |
+                echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
+                echo "FULL_TAG=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
             - name: Build Docker Image
               uses: docker/build-push-action@v4
               with:
@@ -20,6 +24,6 @@ jobs:
                 DSLIM_HTTP_PROBE: false
               with:
                 target: app:latest
-                tag: ${{ env.DOCKERHUB_USERNAME }}/${{ env.REPO_NAME }}:${{ github.sha }}
+                tag: ${{ env.FULL_TAG }}
             - name: printing image
               run: docker ps
