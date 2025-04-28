@@ -5,11 +5,6 @@ on:
       - master
     paths-ignore:
       - k8s/deployment.yaml
-  pull_request:
-    types:
-      - closed
-    branches:
-      - master
   workflow_dispatch:
 jobs:
   tetsing:
