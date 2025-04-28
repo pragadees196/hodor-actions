@@ -11,5 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: testing
-        run: echo "Hi this is test"
+        run: echo "Hi this is test, this is from test branch"
   
