@@ -1,7 +1,16 @@
 name: testing
 on:
-  - push
-  - workflow_dispatch
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - k8s/deployment.yaml
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+  workflow_dispatch:
 jobs:
   tetsing:
     runs-on: ubuntu-latest
