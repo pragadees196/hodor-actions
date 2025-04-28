@@ -26,4 +26,4 @@ jobs:
                 target: app:latest
                 tag: "slim"
             - name: printing image
-              run: docker ps
+              run: docker images
