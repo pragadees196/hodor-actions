@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     app: hodor
   name: hodor
@@ -18,14 +17,13 @@ spec:
       maxUnavailable: 25%
   template:
     metadata:
-      creationTimestamp: null
       labels:
         app: hodor
     spec:
       imagePullSecrets:
       - name: docker
       containers:
-      - image: pragadeesh196/hodr1:latest
+      - image: pragadeesh196/hodor-actions:d4c75989971bc6f0bbd62ac05065a3728fd30454
         name: hodr1
         ports:
         - containerPort: 8081
