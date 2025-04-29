@@ -56,7 +56,7 @@ jobs:
         id: imagetag
         run: |
           echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
-          echo "FULL_TAG=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+          echo "FULL_TAG=pragadeesh196/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
           echo "FULL_TAG_OUTPUT=pragadeesh196/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_OUTPUT
       - name: Build Docker Image
         uses: docker/build-push-action@v4
@@ -104,6 +104,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print image tag
+        env:
+          IMAGE_TAG: "${{ needs.Docker.outputs.FULL_TAG_OUTPUT }}"
         run: |
           echo "IMAGE_TAG is: ${IMAGE_TAG}"
       - name: Setup Git config
