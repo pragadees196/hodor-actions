@@ -1,4 +1,5 @@
-# fampay-hodor
+# hodor-actions
+
 hodor app
 
 <img width="1605" alt="Screenshot 2024-02-01 at 11 12 43 PM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/d4be80a9-7c8e-4751-982c-aedabdf0c176">
