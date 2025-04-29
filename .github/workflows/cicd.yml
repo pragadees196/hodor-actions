@@ -45,7 +45,7 @@ jobs:
     outputs:
       FULL_TAG_OUTPUT: "${{steps.imagetag.outputs.FULL_TAG_OUTPUT}}"
     env: 
-      DOCKERHUB_USERNAME: pragadeesh196
+      DOCKERHUB_USERNAME: ${{vars.REPO_NAME}}
     steps:
       - name: fetch code
         uses: actions/checkout@v3
