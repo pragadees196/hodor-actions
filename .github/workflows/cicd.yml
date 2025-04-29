@@ -91,7 +91,7 @@ jobs:
           docker push $FULL_TAG
       - name: printing the tag
         run:  |
-          echo ${{needs.imagetag.outputs.FULL_TAG_OUTPUT}}
+          echo "FULL_TAG_OUTPUT: ${{ steps.imagetag.outputs.FULL_TAG_OUTPUT }}"
   Updating-Kubernetes-deployment:
     runs-on: ubuntu-latest
     needs: Docker
