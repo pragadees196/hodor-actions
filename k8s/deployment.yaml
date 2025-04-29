@@ -23,7 +23,7 @@ spec:
       imagePullSecrets:
       - name: docker
       containers:
-      - image: 
+      - image: pragadeesh196/hodor-actions:7278461810302f6b7cd33ab04054f0bceeb2e8c7
         name: hodr1
         ports:
         - containerPort: 8081
