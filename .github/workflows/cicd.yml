@@ -57,7 +57,7 @@ jobs:
         run: |
           echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "FULL_TAG=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
-          echo "FULL_TAG_OUTPUT=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "FULL_TAG_OUTPUT=pragadeesh196/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_OUTPUT
       - name: Build Docker Image
         uses: docker/build-push-action@v4
         with:
