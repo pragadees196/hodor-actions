@@ -89,6 +89,9 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           docker push $FULL_TAG
+      - name: printing the tag
+        run:  |
+          echo "${{needs.imagetag.outputs.FULL_TAG_OUTPUT}}"
   Updating-Kubernetes-deployment:
     runs-on: ubuntu-latest
     needs: Docker
