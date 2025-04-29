@@ -1,4 +1,5 @@
 name: cicd
+
 on:
   push:
     branches:
@@ -6,77 +7,88 @@ on:
     paths-ignore:
       - k8s/*.yaml
   workflow_dispatch:
+
 jobs:
   Fetaching-the-code:
     runs-on: ubuntu-latest
     steps:
-      - name: code fetch 
+      - name: Code fetch 
         uses: actions/checkout@v3
+
   Static-code-analysis:
     runs-on: ubuntu-latest
     needs: Fetaching-the-code
     steps:
-      - name: fetch code
+      - name: Fetch code
         uses: actions/checkout@v3
-      - name: sonarqube scanning
+      - name: SonarQube scanning
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-      - name: check Quality Gate result
+      - name: Check Quality Gate result
         uses: SonarSource/sonarqube-quality-gate-action@v1.1.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   Git-leaks:
     runs-on: ubuntu-latest
     needs: Static-code-analysis
     steps:
-      - name: fetch code
+      - name: Fetch code
         uses: actions/checkout@v3
-      - name: gitleaks scan
+      - name: Gitleaks scan
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   Docker:
     runs-on: ubuntu-latest
     needs: Git-leaks
     outputs:
-      FULL_TAG_OUTPUT: "${{steps.imagetag.outputs.FULL_TAG_OUTPUT}}"
-    env: 
-      DOCKERHUB_USERNAME: pragadeesh196
+      FULL_TAG_OUTPUT: "${{ steps.imagetag.outputs.FULL_TAG_OUTPUT }}"
+    # env: 
+    #   DOCKERHUB_USERNAME: pragadeesh196
     steps:
-      - name: fetch code
+      - name: Fetch code
         uses: actions/checkout@v3
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Set IMAGE_NAME and FULL_TAG dynamically
         id: imagetag
         run: |
           echo "IMAGE_NAME=${{ env.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}" >> $GITHUB_ENV
-          echo "FULL_TAG=pragadeesh196/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
-          echo "FULL_TAG_OUTPUT=pragadeesh196/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+          echo "FULL_TAG=${{ vars.REPO_NAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+          echo "FULL_TAG_OUTPUT=${{ vars.REPO_NAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_OUTPUT
+
       - name: Build Docker Image
         uses: docker/build-push-action@v4
         with:
           context: ./app
           push: false
           tags: app:latest
-      - name: compressing the image
+
+      - name: Compressing the image
         uses: kitabisa/docker-slim-action@v1
         env:
           DSLIM_HTTP_PROBE: false
         with:
           target: app:latest
           tag: "slim"
+
       - name: Tagging the image
         run: |
           docker tag app:slim $FULL_TAG
           docker rmi app:latest
-      - name: printing image
+
+      - name: Printing images
         run: docker images
+
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.28.0
         with:
@@ -86,42 +98,39 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+
       - name: Push Docker image to Docker Hub
-        run: |
-          docker push $FULL_TAG
-      - name: printing the tag
-        run:  |
-          echo "FULL_TAG_OUTPUT: ${{ steps.imagetag.outputs.FULL_TAG_OUTPUT }}"
+        run: docker push $FULL_TAG
+
   Updating-Kubernetes-deployment:
     runs-on: ubuntu-latest
     needs: Docker
     if: github.ref == 'refs/heads/master'
-    env:
-      IMAGE_TAG: "${{ needs.Docker.outputs.FULL_TAG_OUTPUT }}"
     steps:
       - name: Fetch code
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print image tag
-        env:
-          IMAGE_TAG: "${{ needs.Docker.outputs.FULL_TAG_OUTPUT }}"
+
+      - name: Set and print image tag
+        id: tag
         run: |
-          echo "IMAGE_TAG is: ${IMAGE_TAG}"
+          echo "FULL_TAG=${{ vars.REPO_NAME }}/${{ github.event.repository.name }}:${{ github.sha }}" >> $GITHUB_ENV
+          echo "Using FULL_TAG: $FULL_TAG"
+
       - name: Setup Git config
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
+
       - name: Update Kubernetes deployment file
         run: |
-          sed -i "s|image: .*|image: ${IMAGE_TAG}|" k8s/deployment.yaml
-          echo "Updated deployment to use image: ${IMAGE_TAG}"
+          sed -i "s|image: .*|image: $FULL_TAG|" k8s/deployment.yaml
+          echo "Updated deployment to use image: $FULL_TAG"
           grep -A 1 "image:" k8s/deployment.yaml
+
       - name: Commit and push changes
         run: |
           git add k8s/deployment.yaml
-          git commit -m "Update Kubernetes deployment with new image tag: ${{ env.IMAGE_TAG }} [skip ci]" || echo "No changes to commit"
+          git commit -m "Update Kubernetes deployment with new image tag: $FULL_TAG [skip ci]" || echo "No changes to commit"
           git push
-          
-        
-
