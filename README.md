@@ -14,3 +14,6 @@ hodor app
 <img width="1792" alt="Screenshot 2024-02-03 at 12 46 16 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/38deda63-e038-474a-93ff-f9488b3a138a">
 <img width="1792" alt="Screenshot 2024-02-03 at 12 45 39 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/9d0e3fc5-ac45-4f10-a7b5-5edee7101b07">
 <img width="1792" alt="Screenshot 2024-02-03 at 12 45 29 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/55645b75-b485-49b8-972a-fcd8b30cf595">
+![Screenshot 2025-04-29 at 8 02 37 PM](https://github.com/user-attachments/assets/724ae04a-cd19-4e0a-9d9e-1b3a55eda217)
+![Screenshot 2025-04-29 at 8 02 12 PM](https://github.com/user-attachments/assets/2c91ca3a-9b78-4d42-a9a3-29a8bfd054ca)
+
