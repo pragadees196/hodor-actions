@@ -5,6 +5,8 @@ on:
       - master
     paths-ignore:
       - k8s/*.yaml
+      - README.md
+      - ./app/README.md
   workflow_dispatch:
 jobs:
   Fetaching-the-code:
