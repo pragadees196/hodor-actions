@@ -10,6 +10,7 @@ hodor app
 <img width="1792" alt="Screenshot 2024-02-03 at 3 19 48 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/5853c1c6-6f91-4621-863f-691ba7da4dd9">
 <img width="1792" alt="Screenshot 2024-02-03 at 3 18 45 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/45095c95-f3c5-4b55-b07e-ddc76fae583d">
 <img width="1509" alt="Screenshot 2024-02-03 at 5 55 11 PM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/dadacdc1-dcfd-4790-8012-aab854fc515a">
+<img width="1509" alt="Screenshot 2024-02-03 at 5 55 11 PM" src="https://github.com/user-attachments/assets/806b811f-53be-4246-ada6-d6a75d570f22">
 <img width="1792" alt="Screenshot 2024-02-03 at 12 20 37 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/d4ab89e4-0969-415f-96ad-7c7867fd4fc2">
 <img width="1792" alt="Screenshot 2024-02-03 at 12 20 46 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/c2b97d41-bc9c-4d5d-bd1d-aaabdc9b0fe7">
 <img width="1792" alt="Screenshot 2024-02-03 at 12 20 56 AM" src="https://github.com/pragadees196/fampay-hodor/assets/121756398/94a197cf-cf6e-4af7-8b82-2effb162943a">
