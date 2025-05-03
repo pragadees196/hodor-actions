@@ -10,12 +10,12 @@ on:
   workflow_dispatch:
 jobs:
   Fetaching-the-code:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: code fetch 
         uses: actions/checkout@v3
   Static-code-analysis:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Fetaching-the-code
     steps:
       - name: fetch code
@@ -30,7 +30,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   Git-leaks:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Static-code-analysis
     steps:
       - name: fetch code
@@ -40,7 +40,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   Docker:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Git-leaks
     outputs:
       FULL_TAG_OUTPUT: "${{steps.imagetag.outputs.FULL_TAG_OUTPUT}}"
@@ -95,7 +95,7 @@ jobs:
         run:  |
           echo "FULL_TAG_OUTPUT: ${{ steps.imagetag.outputs.FULL_TAG_OUTPUT }}"
   Updating-Kubernetes-deployment:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: Docker
     if: github.ref == 'refs/heads/master'
     env:
