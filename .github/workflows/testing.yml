@@ -1,0 +1,9 @@
+name: testing_composite_workflows
+on:
+    workflow_dispatch:
+jobs:
+    testing:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checking python version
+              uses: pragadees196/composite-action/.github/actions/composite-action@master
