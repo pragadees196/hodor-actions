@@ -6,19 +6,16 @@ jobs:
   tag_testing:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code with full history
+      - name: Checkout code
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Required to fetch tags
 
-      - name: Fetch all tags
-        run: git fetch --tags
+      - name: Install GitHub CLI
+        run: sudo apt-get install gh -y
 
-      - name: Get latest tag
+      - name: Get latest release tag
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "All tags:"
-          git tag
-
-          # Get latest tag by commit date
-          latest_tag=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags | head -n 1)
-          echo "Latest tag: $latest_tag"
+          echo "Fetching latest GitHub release..."
+          latest_release=$(gh release view --json tagName -q '.tagName')
+          echo "Latest GitHub release tag: $latest_release"
