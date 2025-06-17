@@ -8,4 +8,4 @@ jobs:
           - name: fetch code
             uses: actions/checkout@v3
           - name: fetch release tag 
-            run: echo ${{github}}
+            run: echo '${{toJson(github)}}'
