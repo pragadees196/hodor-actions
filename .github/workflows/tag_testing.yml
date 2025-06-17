@@ -1,11 +1,17 @@
-name: tag_tetsing
+name: tag_testing
 on:
   workflow_dispatch:
+
 jobs:
-    tag_testing:
-        runs-on: ubuntu-latest 
-        steps:
-          - name: fetch code
-            uses: actions/checkout@v3
-          - name: fetch release tag 
-            run: echo '${{toJson(github)}}'
+  tag_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Needed to fetch all tags
+
+      - name: Get latest tag
+        run: |
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "Latest tag: $latest_tag"
